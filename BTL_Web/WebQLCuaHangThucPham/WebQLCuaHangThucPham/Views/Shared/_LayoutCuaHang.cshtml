@@ -1,4 +1,4 @@
-﻿
+﻿@using WebQLCuaHangThucPham.Models
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,9 +46,20 @@
                 <ul class="header__icon d-flex align-items-center ">
                     <li><i class="fa-solid fa-magnifying-glass icon-search"></i></li>
                     @Html.Action("CartGioHang", "GioHang")
-                    <li> <i class="fa-solid fa-user icon-login"></i></li>
-                    <li id="username"><i class="fa-solid fa-right-from-bracket"></i></li>
+                    @*chưa đăng nhập*@
+                    @if (CurrentUser.MaKH == 0)
+                    {
+                        <li> <i class="fa-solid fa-user icon-login"></i></li>
+                    }
 
+                    @*//Đã đăng nhập*@
+                    @if (CurrentUser.MaKH != 0)
+                    {
+                        <li style="margin-left:3rem">@CurrentUser.TenKH</li>
+                        <li >
+                            <a href="~/Login/DangXuat"><i class="fa-solid fa-right-from-bracket username"></i></a>
+                        </li>
+                    }
                 </ul>
             </div>
             <div class="mb-menu d-flex align-items-center justify-content-between w-100">
@@ -61,7 +72,7 @@
                 <ul class="header__icon d-flex align-items-center ">
                     <li><i class="fa-solid fa-magnifying-glass icon-search"></i></li>
                     <li> <i class="fa-solid fa-user icon-login"></i></li>
-                    <li >
+                    <li>
                         <a href="GioHang.html">
                             <i class="fa-solid fa-cart-shopping icon-cart"></i>
                         </a>
@@ -75,68 +86,8 @@
         </div>
     </header>
     <!-- search login cart -->
-    <div class="modalShow">
-        <div class="overlay"></div>
-        <div class="modal__search">
-            <div class="overlay"></div>
-            <input type="text" placeholder="Tìm kiếm...">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="modal__login">
-            <h3>Đăng nhập</h3>
-            <div class="login__input">
-                <p>Tên tài khoản hoặc địa chỉ email <sup>*</sup></p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="login__input">
-                <p>Mật khẩu <sup>*</sup> </p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="button d-flex justify-content-start">
-                <button class="btnlogin colormain">đăng nhập</button>
-                <button class="btnregis colorgray">đăng ký</button>
-            </div>
-            <div class="login__info__desc d-flex ">
-                <div class="savePassword ">
-                    <input type="checkbox" name="" id="">
-                    <label for="">Ghi nhớ mật khẩu</label>
-                </div>
-                <a href="#">Quên mật khẩu?</a>
-            </div>
-        </div>
-        <div class="modal__register">
-            <h3>Đăng ký</h3>
-            <div class="register__input">
-                <p>Họ và tên <sup>*</sup></p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="register__input">
-                <p>Tên tài khoản hoặc địa chỉ email <sup>*</sup></p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="register__input">
-                <p>Mật khẩu <sup>*</sup> </p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="register__input">
-                <p>Nhập lại mật khẩu <sup>*</sup> </p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="register__input">
-                <p>Số điện thoại <sup>*</sup> </p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="register__input">
-                <p>Địa chỉ <sup>*</sup> </p>
-                <input type="text" name="" id="">
-            </div>
-            <div class="button d-flex">
-                <button class="btnregis colormain">đăng ký</button>
-                <button class="btnlogin colorgray">đăng nhập</button>
-            </div>
-        </div>
-        <i class="fa-solid fa-xmark close-search"></i>
-    </div>
+    @Html.Action("DangNhap", "Login")
+
     <!-- main -->
     <section class="main">
         <div class="container">
@@ -156,7 +107,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-3">
                     <div class="store__left">
                         <p>Danh mục Sản phẩm</p>
 
@@ -193,7 +144,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-9 d-flex flex-column justify-content-between">
+                <div class="col-md-8 col-lg-9 d-flex flex-column justify-content-between">
                     <div class="row list-product">
                         @RenderBody()
                     </div>
@@ -268,8 +219,8 @@
 
 </body>
 @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>*@
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>*@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"

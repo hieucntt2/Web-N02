@@ -1,8 +1,6 @@
-﻿
-@model WebQLCuaHangThucPham.Models.KhachHang
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+﻿@model WebQLCuaHangThucPham.Models.KhachHang
+
+<form>
     <div class="modal__register">
         <h3>đăng ký</h3>
 
@@ -40,10 +38,9 @@
         <div class="button d-flex">
             @*<input type="submit" name="name" value="đăng ký" class="btnregis colormain" />
                 <input type="button" name="name" value="đăng nhập" lass="btnlogin colorgray" />*@
-            <button type="submit" class="btnregis colormain">đăng ký</button>
-            <button type="button" class="btnlogin colorgray">đăng nhập</button>
+            <button type="button" class="btnregiss colormain">đăng ký</button>
+            <button type="button" class="btnloginn colorgray">đăng nhập</button>
         </div>
-
     </div>
     <i class="fa-solid fa-xmark close-search"></i>
-}
+</form>

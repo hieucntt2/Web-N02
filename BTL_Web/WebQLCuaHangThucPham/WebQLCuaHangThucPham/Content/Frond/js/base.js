@@ -27,11 +27,11 @@ $(document).ready(function () {
         var listMaSP = [];
         var listSL = [];
         $(".tr-sanpham").each(function () {
-           
+
             listMaSP.push($(this).attr("id-sp"));
             listSL.push($(this).find("input[Name=SoLuong]").val());
         });
-      
+
         $.ajax({
             url: "/GioHang/CapNhatGioHang",
             type: "POST",
@@ -252,7 +252,7 @@ $(document).ready(function () {
 
     $('.price li').click(function () {
         let val = $(this).attr('value');
-         //Cần lấy ra masp hiện tại đang được chọn
+        //Cần lấy ra masp hiện tại đang được chọn
         let masp = $('.store__left ul li a.active').attr("id-masp");
         //Trường hợp lấy ra tất cả mã sp
         if (masp == undefined) {
@@ -260,41 +260,155 @@ $(document).ready(function () {
         }
         //Điều hướng
         window.location.href = "/Products/ChiTietLoaiSP?MaLoai=" + masp + "&value=" + val;
-     
-       /* let minPrice = 0;
-        let maxPrice = 0;
-        if (val == 0) {
-            minPrice = 0;
-            maxPrice = 10000000000000;
-        }
-        if (val == 1) {
-            minPrice = 0;
-            maxPrice = 100000;
-        }
-        if (val == 2) {
-            minPrice = 100000;
-            maxPrice = 500000;
-        }
-        if (val == 3) {
-            minPrice = 500000;
-            maxPrice = 0;
-        }*/
-        
+
+        /* let minPrice = 0;
+         let maxPrice = 0;
+         if (val == 0) {
+             minPrice = 0;
+             maxPrice = 10000000000000;
+         }
+         if (val == 1) {
+             minPrice = 0;
+             maxPrice = 100000;
+         }
+         if (val == 2) {
+             minPrice = 100000;
+             maxPrice = 500000;
+         }
+         if (val == 3) {
+             minPrice = 500000;
+             maxPrice = 0;
+         }*/
+
     })
     $('.btnlogin').click(function () {
-        $('.icon-login').hide();
-        $('#username').show();
-    })
-    $('#username').click(function () {
-        if (confirm('Bạn có chắc chắn muốn đăng xuất không ?') == true) {
-            $('.icon-login').show();
-            $(this).hide();
-        } else {
+        let tk = $(".modal__login input[Name=txtTaiKhoan]").val();
+        let mk = $(".modal__login input[Name=txtMatKhau]").val();
+        if (tk == "" || mk == "") {
+            alert("Bạn chưa nhập đủ thông tin");
+        }
+        else {
+            $.ajax({
+                url: "/Login/DN",
+                type: "POST",
+                data: {
+                    taikhoan: tk,
+                    matkhau: mk,
+                },
+                dataType: "JSON",
+                success: function (mess) {
+                    if (mess == "200") {
+                        alert("Đăng nhập thành công");
+                        location.reload();
+                    }
+                    else {
+                        alert("Đăng nhập thất bại");
+                    }
+                },
+                error: function () {
+                    alert("Đăng nhập thất bại");
+                }
+            });
         }
     })
+    $('.btnregiss').click(function () {
+        let input = $(".modal__login + form").serializeObject();
+        if (input.HoTen == "" || input.Email == "") {
+            alert("Thông tin nhập chưa đủ");
+        }
+        else {
+
+            $.ajax({
+                url: "/Login/DangKy",
+                type: "POST",
+                data: {
+                    kh: input,
+                },
+                dataType: "JSON",
+                success: function (mess) {
+                    if (mess == "200") {
+                        alert("Đăng ký thành công");
+                        location.reload();
+                    }
+                    else {
+                        alert("Đăng ký thất bại");
+                    }
+                },
+                error: function () {
+                    alert("Đăng ký thất bại");
+                }
+            });
+        }
+    })
+    
     $('.store__left ul li').click(function () {
         console.log(1);
         $('.store__left ul li a').removeClass('active')
         $(this).addClass('active')
     })
 });
+
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+$(document).ready(function () {
+    var indexCurrent = $('.img__slide img.active').attr('index');
+
+    $('.img__slide img').click(function () {
+        $('.img__slide img').removeClass('active');
+        $(this).addClass('active');
+        const src = $(this).attr('src');
+        $('.main__img img').attr('src', src);
+        indexCurrent = $(this).attr('index');
+    });
+    function activeImages() {
+        $('.img__slide img').each(function () {
+            var index = $(this).attr('index');
+            if (index == indexCurrent) {
+                var src = $(this).attr('src');
+                $('.main__img img').attr('src', src);
+                $('.img__slide img').removeClass('active');
+                $(this).addClass('active');
+            }
+        })
+    }
+    $('.left').click(function () {
+        indexCurrent--;
+        activeImages();
+        if (indexCurrent < 1) {
+            indexCurrent = 4;
+            activeImages();
+        }
+    })
+    $('.right').click(function () {
+        indexCurrent++;
+        activeImages();
+        if (indexCurrent > 4) {
+            indexCurrent = 1;
+            activeImages();
+        }
+    });
+    $('.prev').click(function (e) {
+        //e.preventDefault();
+        $('.product__promotions').slick('slickPrev');
+    });
+
+    $('.next').click(function (e) {
+        //e.preventDefault();
+        $('.product__promotions').slick('slickNext');
+    });
+
+})

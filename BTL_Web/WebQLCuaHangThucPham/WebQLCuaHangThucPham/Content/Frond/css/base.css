@@ -935,5 +935,7 @@ footer .info p {
     .mb-menu {
         display: none !important;
     }
-
+    .container {
+        max-width: 1300px;
+    }
 }

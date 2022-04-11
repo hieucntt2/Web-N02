@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebQLCuaHangThucPham.Models;
 
 namespace WebQLCuaHangThucPham.Controllers
@@ -16,52 +17,61 @@ namespace WebQLCuaHangThucPham.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DangKy(/*[Bind(Include = "MaKH, HoTen, GioiTinh, Tuoi, Email, SDT, Time_Create, Time_Update, isActive, isDelete, TaiKhoan, MatKhau, Admin, DiaChi")]*/ KhachHang kh)
+        public ActionResult DangKy(KhachHang kh)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-
-                if (kh.Time_Create == null) kh.Time_Create = DateTime.Now;
-                if (kh.Time_Update == null) kh.Time_Update = DateTime.Now;
-                kh.isDelete = 0;
-                kh.isActive = 0;
-                db.KhachHangs.Add(kh);
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    if (kh.Time_Create == null) kh.Time_Create = DateTime.Now;
+                    if (kh.Time_Update == null) kh.Time_Update = DateTime.Now;
+                    kh.isDelete = 0;
+                    kh.isActive = 0;
+                    db.KhachHangs.Add(kh);
+                    db.SaveChanges();
+                    return Json("200");
+                }
+                else
+                {
+                    return Json("404");
+                }
             }
-            return View();
+            catch
+            {
+                return Json("404");
+            }
         }
+
         [HttpGet]
         public ActionResult DangNhap()
         {
-            return View();
+            return PartialView();
         }
         [HttpPost]
-        public ActionResult DangNhap(FormCollection f)
+        public ActionResult DN(string taikhoan, string matkhau)
         {
-            string taikhoan = "";
-            string matkhau = "";
-            if (!String.IsNullOrEmpty(f["txtTaiKhoan"]) && !String.IsNullOrEmpty(f["txtMatKhau"]))
+            KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.TaiKhoan == taikhoan && n.MatKhau == matkhau);
+            if (kh != null)
             {
-                taikhoan = f["txtTaiKhoan"].ToString();
-                matkhau = f["txtMatKhau"].ToString();
-                KhachHang kh = db.KhachHangs.SingleOrDefault(n => n.TaiKhoan == taikhoan && n.MatKhau == matkhau);
-                if (kh != null)
-                {
-                    ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
-                    Session["TaiKhoan"] = kh;
-                    return /*RedirectToAction("Index", "Admin");*/View();
-                }
-                ViewBag.ThongBao = "Sai tên tài khoản hoặc mật khẩu";
-                return View();
+                Session["TaiKhoan"] = kh;
+                //Lưu thông tin đăng nhập
+                FormsAuthentication.SetAuthCookie(kh.MaKH.ToString() + "|" + kh.HoTen + "|" + kh.DiaChi + "|" + kh.SDT + "|" + kh.Email, true); //id:1,ten:hieu => format: 1|hieu
+                return Json("200");
             }
-            ViewBag.ThongBao = "Bạn phải nhập tài khoản và mật khẩu ";
-            return View();
-            //string taikhoan = f["txtTaiKhoan"].ToString();
-            //string matkhau = f["txtMatKhau"].ToString();
+            else
+            {
+                return Json("404");
+            }
+          
+        }
 
+        public ActionResult DangXuat()
+        {
+            //Xoa coockie di
+            FormsAuthentication.SignOut();
+            return Redirect("/trangchu");
         }
 
     }

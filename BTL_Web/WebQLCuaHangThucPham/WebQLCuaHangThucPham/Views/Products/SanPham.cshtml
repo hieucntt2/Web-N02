@@ -12,7 +12,7 @@
         var a = db.AnhSPs.Where(x => x.MaSP == item.MaSP).First().URL;
         var Gia = db.GiaSPs.Where(x => x.MaSP == item.MaSP && x.Time_Begin < DateTime.Now).First();
 
-        <div class="col-md-4 prd">
+        <div class="col-md-6 col-lg-4 prd">
             <div class="product_item">
                 <div class="item__img">
                     <a href="@Url.Action("ChiTietSanPham", "Products", new { @MaSP = item.MaSP })">
