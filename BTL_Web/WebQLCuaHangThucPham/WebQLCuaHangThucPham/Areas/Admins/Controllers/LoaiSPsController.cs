@@ -17,7 +17,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // GET: Admins/LoaiSPs
         public ActionResult Index()
         {
-            return View(db.LoaiSPs.ToList());
+            return View(db.LoaiSPs.Where(x => x.isDelete != 1).ToList());
         }
 
         // GET: Admins/LoaiSPs/Details/5
@@ -52,6 +52,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
             {
                 if (loaiSP.Time_Create == null) loaiSP.Time_Create = DateTime.Now;
                 if (loaiSP.Time_Update == null) loaiSP.Time_Update = DateTime.Now;
+                loaiSP.isDelete = 0;
                 db.LoaiSPs.Add(loaiSP);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,6 +85,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         {
             if (ModelState.IsValid)
             {
+                loaiSP.Time_Update = DateTime.Now;
                 db.Entry(loaiSP).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -109,12 +111,17 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // POST: Admins/LoaiSPs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult Delete([Bind(Include = "Maloai,TenLoai,Time_Create,Time_Update,NguoiTao,isActive,isDelete")] LoaiSP loaiSP)
         {
-            LoaiSP loaiSP = db.LoaiSPs.Find(id);
-            db.LoaiSPs.Remove(loaiSP);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                loaiSP.Time_Update = DateTime.Now;
+                loaiSP.isDelete = 1;
+                db.Entry(loaiSP).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(loaiSP);
         }
 
         protected override void Dispose(bool disposing)

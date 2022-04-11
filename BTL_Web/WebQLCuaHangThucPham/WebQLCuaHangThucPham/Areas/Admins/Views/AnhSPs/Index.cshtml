@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<WebQLCuaHangThucPham.Models.AnhSP>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ảnh Sản Phẩm";
     Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="content">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h3 class="card-title w-25"></h3>
+            @*<h3 class="card-title w-25"></h3>*@
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             <div class="d-flex justify-content-end w-75">
                 <a href="/admins/anhsps/create">Thêm mới</a>
             </div>
@@ -19,10 +23,13 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.MaSP)
+                            Mã Sản Phẩm
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TenAnh)
+                            Tên Sản Phẩm
+                        </th>
+                        <th>
+                            Tên Ảnh
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.URL)
@@ -35,24 +42,28 @@
                     {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaSP)
+                            @item.MaSP
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaAnh)
+                            @item.SanPham.TenSP
                         </td>
                         <td>
-                            <img src="~/Images/@item.URL" width= "120px" />
+                            @Html.DisplayFor(modelItem => item.TenAnh)
+
+                        </td>
+                        <td>
+                            <img src="~/Content/Frond/img/@item.URL" width="150px" />
                         </td>
 
-                       
+
 
                         <td class="text-center tac-vu ">
                             <a href="/admins/AnhSPs/edit/@item.MaAnh">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="/admins/anhsps/details/@item.MaAnh">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                            @*<a href="/admins/anhsps/details/@item.MaAnh">
+                <i class="fas fa-eye"></i>
+            </a>*@
                             <a href="/admins/anhsps/Delete/@item.MaAnh">
                                 <i class="fas fa-trash-alt"></i>
                             </a>

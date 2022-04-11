@@ -2,63 +2,57 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+    Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<div class="content">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="card-title w-25"></h3>
+            <div class="d-flex justify-content-end w-75">
+                <a href="/admins/PTTTs/create">Thêm mới</a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body ">
+            <table class=" table  table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MaPTTT)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TenPT)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaPTTT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenPT)
+                        </td>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenPT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time_Create)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time_Update)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NguoiTao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDelete)
-        </th>
-        <th></th>
-    </tr>
+                        <td class="text-center tac-vu ">
+                            <a href="/admins/PTTTS/edit/@item.MaPTTT">
+                                <i class="fas fa-edit"></i>
+                            </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenPT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time_Create)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time_Update)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NguoiTao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDelete)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaPTTT }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaPTTT }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaPTTT })
-        </td>
-    </tr>
-}
+                            <a href="/admins/PTTTs/Delete/@item.MaPTTT">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>
 
-</table>

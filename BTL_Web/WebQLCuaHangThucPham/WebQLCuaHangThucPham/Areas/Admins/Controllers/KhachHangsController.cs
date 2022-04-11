@@ -17,11 +17,11 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // GET: Admins/KhachHangs
         public ActionResult Index()
         {
-            return View(db.KhachHangs.ToList());
+            return View(db.KhachHangs.Where(x => x.isDelete == 0).ToList());
         }
 
         // GET: Admins/KhachHangs/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -46,12 +46,13 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaKH,HoTen,GioiTinh,Tuoi,Email,SDT,Time_Create,Time_Update,NguoiTao,isActive,isDelete")] KhachHang khachHang)
+        public ActionResult Create([Bind(Include = "MaKH,HoTen,GioiTinh,Tuoi,Email,SDT,Time_Create,Time_Update,NguoiTao,isActive,isDelete,TaiKhoan,Mật khẩu ,Admin,DiaChi")] KhachHang khachHang)
         {
             if (ModelState.IsValid)
             {
                 if (khachHang.Time_Create == null) khachHang.Time_Create = DateTime.Now;
                 if (khachHang.Time_Update == null) khachHang.Time_Update = DateTime.Now;
+                khachHang.isDelete = 0;
                 db.KhachHangs.Add(khachHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,7 +62,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         }
 
         // GET: Admins/KhachHangs/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -84,6 +85,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         {
             if (ModelState.IsValid)
             {
+                khachHang.Time_Update = DateTime.Now;
                 db.Entry(khachHang).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -109,12 +111,17 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // POST: Admins/KhachHangs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult Delete([Bind(Include = "MaKH,HoTen,GioiTinh,Tuoi,Email,SDT,Time_Create,Time_Update,NguoiTao,isActive,isDelete")] KhachHang khachHang)
         {
-            KhachHang khachHang = db.KhachHangs.Find(id);
-            db.KhachHangs.Remove(khachHang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                khachHang.Time_Update = DateTime.Now;
+                khachHang.isDelete = 1;
+                db.Entry(khachHang).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(khachHang);
         }
 
         protected override void Dispose(bool disposing)

@@ -1,14 +1,17 @@
-﻿@model IEnumerable<WebQLCuaHangThucPham.Models.SanPham>
-@ViewBag.
+﻿@using WebQLCuaHangThucPham.Models;
+@model IEnumerable<WebQLCuaHangThucPham.Models.SanPham>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sản Phẩm";
     Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="content">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h3 class="card-title w-25"></h3>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <div class="d-flex justify-content-end w-75">
                 <a href="/admins/sanphams/create">Thêm mới</a>
             </div>
@@ -18,21 +21,28 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.TenSP)
+                            Mã SP
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.GTSP)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.MaLoai)
+                            Tên Sản Phẩm
                         </th>
 
                         <th>
-                            @Html.DisplayNameFor(model => model.SL)
+                            Ảnh Sản Phẩm
+                        </th>
+                        <th>
+                            Tên Loại
                         </th>
 
                         <th>
-                            @Html.DisplayNameFor(model => model.isActive)
+                            Số Lượng
+                        </th>
+                        <th>
+                            Giới thiệu Sản phẩm
+                        </th>
+
+                        <th>
+                            Hoạt Động
                         </th>
 
                         <th></th>
@@ -41,19 +51,33 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
+                        var db = new QLCuaHangThucPhamEntities1();
+                        var anh = db.AnhSPs.Where(x => x.MaSP == item.MaSP).ToList();
                         <tr>
+                            <td>@item.MaSP</td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TenSP)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.GTSP)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MaLoai)
-                            </td>
 
                             <td>
+                                @if (@anh.Count() != 0)
+                                {
+                                    <img src="~/Content/Frond/img/@anh[0].URL" alt="Alternate Text" width="150px" />
+                                }
+                                else if (@anh.Count()== 0)
+                                {
+                                    <p>Chưa có Ảnh</p>
+                                }
+
+                            </td>
+                            <td>
+                                @item.LoaiSP.TenLoai
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.SL)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GTSP)
                             </td>
                             <td class="is-active">
                                 @if (item.isActive == 0)
@@ -81,3 +105,4 @@
         </div>
 
     </div>
+</div>

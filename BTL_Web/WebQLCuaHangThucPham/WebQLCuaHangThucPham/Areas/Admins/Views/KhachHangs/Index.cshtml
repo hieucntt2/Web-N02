@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<WebQLCuaHangThucPham.Models.KhachHang>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Khách hàng";
     Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="content">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h3 class="card-title w-25"></h3>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <div class="d-flex justify-content-end w-75">
                 <a href="/admins/khachhangs/create">Thêm mới</a>
             </div>
@@ -18,13 +21,10 @@
                 <thead>
                     <tr>
                         <th>
+                            @Html.DisplayNameFor(model => model.MaKH)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.HoTen)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.GioiTinh)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Tuoi)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Email)
@@ -33,9 +33,12 @@
                             @Html.DisplayNameFor(model => model.SDT)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.DiaChi)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.isActive)
                         </th>
-                        
+
                         <th></th>
                     </tr>
                 </thead>
@@ -44,19 +47,21 @@
                     {
                     <tr>
                         <td>
+                            @Html.DisplayFor(modelItem => item.MaKH)
+                        </td>
+
+                        <td>
                             @Html.DisplayFor(modelItem => item.HoTen)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.GioiTinh)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tuoi)
-                        </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
                         </td>
                         <td class="is-active">
                             @if (item.isActive == 0)
@@ -84,6 +89,7 @@
         </div>
 
     </div>
+</div>
 
 
   

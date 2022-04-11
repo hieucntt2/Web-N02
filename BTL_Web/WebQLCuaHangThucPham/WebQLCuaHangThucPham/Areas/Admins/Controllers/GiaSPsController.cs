@@ -17,8 +17,8 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // GET: Admins/GiaSPs
         public ActionResult Index()
         {
-            
-            return View(db.GiaSPs.ToList());
+
+            return View(db.GiaSPs.OrderBy(x => x.MaGia).ToList());
         }
 
         // GET: Admins/GiaSPs/Details/5
@@ -52,7 +52,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(giaSP.Time_End == null)
+                if (giaSP.Time_End == null)
                 {
                     giaSP.Time_End = DateTime.MaxValue;
                 }
@@ -60,6 +60,8 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //IEnumerable<SelectListItem> MaSP = new SelectList(db.SanPhams.ToList().Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.MaSP), "MaSP", "TenSP", giaSP.MaSP);
+            ViewBag.MaSP = new SelectList(db.SanPhams.ToList().Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.MaSP), "MaSP", "TenSP", giaSP.MaSP);
 
             return View(giaSP);
         }
@@ -76,6 +78,8 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MaSP = new SelectList(db.SanPhams.ToList().Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.MaSP), "MaSP", "TenSP", giaSP.MaSP);
+
             return View(giaSP);
         }
 
@@ -88,6 +92,10 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (giaSP.Time_End == null)
+                {
+                    giaSP.Time_End = DateTime.MaxValue;
+                }
                 db.Entry(giaSP).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

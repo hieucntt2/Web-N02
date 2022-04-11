@@ -18,7 +18,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         public ActionResult Index()
         {
             //ViewBag.sanpham = db.SanPhams.Where(x => x.isDelete == 0 && x.isActive == 0).ToList();
-            return View(db.SanPhams.ToList());
+            return View(db.SanPhams.Where(x => x.isDelete == 0).OrderByDescending(x => x.Time_Update).ToList());
         }
 
         // GET: Admins/SanPhams/Details/5
@@ -39,7 +39,8 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // GET: Admins/SanPhams/Create
         public ActionResult Create()
         {
-            ViewBag.MaLoai = new SelectList(db.LoaiSPs.ToList().OrderBy(n => n.MaLoai), "MaLoai", "TenLoai");
+            ViewBag.MaLoai = new SelectList(db.LoaiSPs.OrderBy(n => n.MaLoai), "MaLoai", "TenLoai");
+            //ViewBag.MaLoai = new SelectList(db.LoaiSPs.OrderBy(n => n.MaLoai), "MaLoai", "TenLoai");
             return View();
         }
 
@@ -59,7 +60,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.MaLoai = new SelectList(db.LoaiSPs.OrderBy(n => n.MaLoai), "MaLoai", "TenLoai");
             return View(sanPham);
         }
 
@@ -76,7 +77,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
                 return HttpNotFound();
             }
             // tạo nguồn dữ liệu cho danh mục
-            ViewBag.MaLoai = new SelectList(db.LoaiSPs.ToList().OrderBy(n => n.MaLoai), "MaLoai", "TenLoai");
+            ViewBag.MaLoai = new SelectList(db.LoaiSPs, "MaLoai", "TenLoai", sanPham.MaLoai);
             return View(sanPham);
         }
 
@@ -89,11 +90,12 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         {
             if (ModelState.IsValid)
             {
+                sanPham.Time_Update = DateTime.Now;
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LoaiSP = db.SanPhams.Where(x => x.isDelete == 0 && x.isActive == 0).ToList();
+            ViewBag.MaLoai = new SelectList(db.LoaiSPs, "MaLoai", "TenLoai", sanPham.MaLoai);
             return View(sanPham);
         }
 
@@ -115,12 +117,18 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // POST: Admins/SanPhams/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+         public ActionResult Delete([Bind(Include = "MaSP,TenSP,GTSP,MaLoai,SL,Time_Create,Time_Update,NguoiTao,isActive,isDelete")] SanPham sanPham)
         {
-            SanPham sanPham = db.SanPhams.Find(id);
-            db.SanPhams.Remove(sanPham);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                sanPham.Time_Update = DateTime.Now;
+                sanPham.isDelete = 1;
+                db.Entry(sanPham).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.MaLoai = new SelectList(db.LoaiSPs, "MaLoai", "TenLoai", sanPham.MaLoai);
+            return View(sanPham);
         }
 
         protected override void Dispose(bool disposing)

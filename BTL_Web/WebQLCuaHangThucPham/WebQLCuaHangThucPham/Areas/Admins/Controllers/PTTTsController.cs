@@ -46,7 +46,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaPTTT,TenPT,Time_Create,Time_Update,NguoiTao,isActive,isDelete")] PTTT pTTT)
+        public ActionResult Create([Bind(Include = "MaPTTT,TenPT")] PTTT pTTT)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaPTTT,TenPT,Time_Create,Time_Update,NguoiTao,isActive,isDelete")] PTTT pTTT)
+        public ActionResult Edit([Bind(Include = "MaPTTT,TenPT")] PTTT pTTT)
         {
             if (ModelState.IsValid)
             {

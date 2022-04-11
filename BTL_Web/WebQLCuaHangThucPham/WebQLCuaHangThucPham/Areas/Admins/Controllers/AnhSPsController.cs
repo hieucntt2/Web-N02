@@ -18,7 +18,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // GET: Admins/AnhSPs
         public ActionResult Index()
         {
-            return View(db.AnhSPs.ToList());
+            return View(db.AnhSPs.OrderBy(x => x.MaSP).ToList());
         }
 
         // GET: Admins/AnhSPs/Details/5
@@ -50,20 +50,19 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaAnh,MaSP,TenAnh,URL")] AnhSP anhSP, HttpPostedFileBase image)
         {
-
-            if (ModelState.IsValid)
+            if (image != null)
             {
-                if (image != null)
-                {
-                    image.SaveAs(Server.MapPath("~/Images/" + image.FileName));
-                    anhSP.URL = System.IO.Path.GetFileName(image.FileName);
-                }
+                anhSP.URL = System.IO.Path.GetFileName(image.FileName);
+                image.SaveAs(Server.MapPath("~/Content/Frond/img/" + image.FileName));
 
+            }
+            if (ModelState.IsValid)
+                {
                 db.AnhSPs.Add(anhSP);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.MaSP = new SelectList(db.SanPhams.ToList().Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.MaSP), "MaSP", "TenSP", anhSP.MaSP);
             return View(anhSP);
         }
 
@@ -79,6 +78,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MaSP = new SelectList(db.SanPhams.ToList().Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.MaSP), "MaSP", "TenSP", anhSP.MaSP);
             return View(anhSP);
         }
 
@@ -87,14 +87,22 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaAnh,MaSP,TenAnh,URL")] AnhSP anhSP)
+        public ActionResult Edit([Bind(Include = "MaAnh,MaSP,TenAnh,URL")] AnhSP anhSP, HttpPostedFileBase image)
         {
+           
             if (ModelState.IsValid)
             {
-                db.Entry(anhSP).State = EntityState.Modified;
+                AnhSP a = db.AnhSPs.Find(anhSP.MaAnh);
+                if (a != null)
+                {
+                    a.URL = System.IO.Path.GetFileName(image.FileName);
+                    image.SaveAs(Server.MapPath("~/Content/Frond/img/" + image.FileName));
+                }
+                db.Entry(a).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MaSP = new SelectList(db.SanPhams.ToList().Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.MaSP), "MaSP", "TenSP", anhSP.MaSP);
             return View(anhSP);
         }
 

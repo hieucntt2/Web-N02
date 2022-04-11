@@ -29,7 +29,7 @@
                         <div class="form-group d-flex">
                             @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.MaLoai, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                <input type="te" name="" value=" @Model.LoaiSP.TenLoai" class = "form-control" readOnly />
                                 @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -46,7 +46,7 @@
 
                         <div class="form-group d-flex d-flex">
                             @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10 d-flex">
+                            <div class="col-md-10 d-flex" style="pointer-events:none">
                                 <div class="d-flex align-items-center">
                                     <input type="radio" name="ISACTIVE" id="ISACTIVE1" value="0" @if (Model.isActive == 0) { <text> checked</text>} />
                                     <label for="ISACTIVE1" class="text-success ml-1">Hoạt động</label>

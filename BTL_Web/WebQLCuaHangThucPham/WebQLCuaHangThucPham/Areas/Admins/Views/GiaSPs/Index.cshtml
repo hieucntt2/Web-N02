@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<WebQLCuaHangThucPham.Models.GiaSP>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Giá Sản Phẩm";
     Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="content">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h3 class="card-title w-25"></h3>
+            @*<h3 class="card-title w-25"></h3>*@
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <div class="d-flex justify-content-end w-75">
                 <a href="/admins/giasps/create">Thêm mới</a>
             </div>
@@ -18,18 +22,17 @@
             <table class=" table  table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Stt</th>
                         <th>
-                            @Html.DisplayNameFor(model => model.MaSP)
+                            Tên Sản Phẩm
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Gia)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Time_Begin)
+                            Ngày Tạo
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Time_End)
+                            Ngày Sửa
                         </th>
                         <th></th>
                     </tr>
@@ -39,9 +42,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>item</td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MaSP)
+                                @item.SanPham.TenSP
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Gia)
@@ -57,18 +59,17 @@
                                 <a href="/admins/Giasps/edit/@item.MaGia">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="/admins/giasps/details/@item.MaGia">
+                                @*<a href="/admins/giasps/details/@item.MaGia">
                                     <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="/admins/giasp/Delete/@item.MaGia">
+                                </a>*@
+                                @*<a href="/admins/giasp/Delete/@item.MaGia">
                                     <i class="fas fa-trash-alt"></i>
-                                </a>
+                                </a>*@
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
