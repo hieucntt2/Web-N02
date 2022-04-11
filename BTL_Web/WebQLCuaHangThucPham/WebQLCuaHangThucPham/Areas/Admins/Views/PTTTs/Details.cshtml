@@ -1,0 +1,67 @@
+﻿@model WebQLCuaHangThucPham.Models.PTTT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PTTT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenPT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenPT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_Create)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time_Create)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_Update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time_Update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDelete)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaPTTT }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

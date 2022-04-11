@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebQLCuaHangThucPham.Models.PTTT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutTrangChu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenPT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time_Create)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time_Update)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiTao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDelete)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenPT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time_Create)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time_Update)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiTao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isDelete)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaPTTT }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaPTTT }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaPTTT })
+        </td>
+    </tr>
+}
+
+</table>

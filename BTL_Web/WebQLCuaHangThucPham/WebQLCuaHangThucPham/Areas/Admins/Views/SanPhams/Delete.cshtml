@@ -1,0 +1,231 @@
+﻿@model WebQLCuaHangThucPham.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div class="content">
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaSP)
+                    <div class="col-md-6">
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MaLoai, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.SL, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SL, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.Sl, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex d-flex">
+                            @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10 d-flex">
+                                <div class="d-flex align-items-center">
+                                    <input type="radio" name="ISACTIVE" id="ISACTIVE1" value="0" @if (Model.isActive == 0) { <text> checked</text>} />
+                                    <label for="ISACTIVE1" class="text-success ml-1">Hoạt động</label>
+                                </div>
+                                <div class="d-flex align-items-center ml-2">
+                                    <input type="radio" name="ISACTIVE" id="ISACTIVE2" value="1" @if (Model.isActive == 1) { <text> checked</text>} />
+                                    <label for="ISACTIVE2" class="text-danger ml-1">Đang khóa</label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.Time_Update, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Time_Update, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.CREATED_DATE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.UPDATED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.UPDATED_DATE, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.UPDATED_DATE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.SLUG, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SLUG, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.SLUG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.META_TITLE, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.META_TITLE, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.META_TITLE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.META_KEYWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.META_KEYWORD, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.META_KEYWORD, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.META_DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <textarea name="META_DESCRIPTION" id="META_DESCRIPTION" class="form-control" readonly>@Model.META_DESCRIPTION</textarea>
+                                @Html.ValidationMessageFor(model => model.META_DESCRIPTION, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.CREATED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.CREATED_BY, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            @Html.LabelFor(model => model.UPDATED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.UPDATED_BY, new { htmlAttributes = new { @class = "form-control", @readOnly = "readdonly" } })
+                                @Html.ValidationMessageFor(model => model.UPDATED_BY, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group d-flex w-100">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <a href="/admins/categories/edit/@Model.ID" class="btn btn-success mr-1" title="Sửa danh mục...">Sửa</a>
+                                <a href="/admins/categories/" class="btn btn-danger mx-1">Quay lại</a>
+                            </div>
+                        </div>*@
+
+
+                    <div class="form-group d-flex w-100">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <input type="submit" value="Xóa" class="btn btn-success mr-1" />
+                            <a href="/admins/categories/" class="btn btn-danger mx-1">Quay lại</a>
+                        </div>
+                    </div>
+                </div>            }
+
+        </div>
+    </div>
+</div>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GTSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GTSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaLoai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_Create)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time_Create)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_Update)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time_Update)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDelete)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

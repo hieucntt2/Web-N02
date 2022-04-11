@@ -1,0 +1,10 @@
+﻿    @using WebQLCuaHangThucPham.Models;
+@model List<LoaiSP>
+
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("ChiTietLoaiSP","Products",new { @MaLoai = item.MaLoai})" id-masp="@item.MaLoai">@item.TenLoai</a></li>
+}
+
+
+
