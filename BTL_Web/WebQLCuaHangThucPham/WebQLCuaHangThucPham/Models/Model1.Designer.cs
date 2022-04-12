@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\CNTT2\Ki 2 Nam 3\Lap trinh web\BTL_Nhom6\BTL\BTL_Web\WebQLCuaHangThucPham\WebQLCuaHangThucPham\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Admin\Desktop\Web-N02\BTL_Web\WebQLCuaHangThucPham\WebQLCuaHangThucPham\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

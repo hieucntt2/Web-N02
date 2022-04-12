@@ -21,7 +21,7 @@ namespace WebQLCuaHangThucPham.Models
             this.TTDHs = new HashSet<TTDH>();
         }
     
-        public string MaDH { get; set; }
+        public int MaDH { get; set; }
         public Nullable<System.DateTime> Time_Create { get; set; }
         public Nullable<decimal> Money { get; set; }
         public int MaKH { get; set; }

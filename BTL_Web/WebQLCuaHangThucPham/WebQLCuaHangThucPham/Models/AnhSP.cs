@@ -14,8 +14,8 @@ namespace WebQLCuaHangThucPham.Models
     
     public partial class AnhSP
     {
-        public string MaAnh { get; set; }
-        public string MaSP { get; set; }
+        public int MaAnh { get; set; }
+        public int MaSP { get; set; }
         public string TenAnh { get; set; }
         public string URL { get; set; }
     

@@ -14,8 +14,8 @@ namespace WebQLCuaHangThucPham.Models
     
     public partial class CTDH
     {
-        public string MaDH { get; set; }
-        public string MaSP { get; set; }
+        public int MaDH { get; set; }
+        public int MaSP { get; set; }
         public Nullable<int> SoLuong { get; set; }
     
         public virtual DonHang DonHang { get; set; }

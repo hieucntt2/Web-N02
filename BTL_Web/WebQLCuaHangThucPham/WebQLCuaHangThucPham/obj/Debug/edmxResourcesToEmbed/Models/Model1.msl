@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="QLCuaHangThucPhamModel1StoreContainer" CdmEntityContainer="QLCuaHangThucPhamEntities1">
+  <EntityContainerMapping StorageEntityContainer="QLCuaHangThucPhamModelStoreContainer" CdmEntityContainer="QLCuaHangThucPhamEntities1">
     <EntitySetMapping Name="AnhSPs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.AnhSP">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.AnhSP">
         <MappingFragment StoreEntitySet="AnhSP">
           <ScalarProperty Name="MaAnh" ColumnName="MaAnh" />
           <ScalarProperty Name="MaSP" ColumnName="MaSP" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DonHangs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.DonHang">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.DonHang">
         <MappingFragment StoreEntitySet="DonHang">
           <ScalarProperty Name="MaDH" ColumnName="MaDH" />
           <ScalarProperty Name="Time_Create" ColumnName="Time_Create" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GiaSPs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.GiaSP">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.GiaSP">
         <MappingFragment StoreEntitySet="GiaSP">
           <ScalarProperty Name="MaGia" ColumnName="MaGia" />
           <ScalarProperty Name="MaSP" ColumnName="MaSP" />
@@ -33,7 +33,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KhachHangs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.KhachHang">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.KhachHang">
         <MappingFragment StoreEntitySet="KhachHang">
           <ScalarProperty Name="MaKH" ColumnName="MaKH" />
           <ScalarProperty Name="HoTen" ColumnName="HoTen" />
@@ -54,7 +54,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LoaiSPs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.LoaiSP">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.LoaiSP">
         <MappingFragment StoreEntitySet="LoaiSP">
           <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
           <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
@@ -67,7 +67,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PTTTs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.PTTT">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.PTTT">
         <MappingFragment StoreEntitySet="PTTT">
           <ScalarProperty Name="MaPTTT" ColumnName="MaPTTT" />
           <ScalarProperty Name="TenPT" ColumnName="TenPT" />
@@ -75,7 +75,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SanPhams">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.SanPham">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.SanPham">
         <MappingFragment StoreEntitySet="SanPham">
           <ScalarProperty Name="MaSP" ColumnName="MaSP" />
           <ScalarProperty Name="TenSP" ColumnName="TenSP" />
@@ -91,7 +91,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TinTucs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.TinTuc">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.TinTuc">
         <MappingFragment StoreEntitySet="TinTuc">
           <ScalarProperty Name="MaTT" ColumnName="MaTT" />
           <ScalarProperty Name="MoTa" ColumnName="MoTa" />
@@ -101,7 +101,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CTDHs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.CTDH">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.CTDH">
         <MappingFragment StoreEntitySet="CTDH">
           <ScalarProperty Name="MaDH" ColumnName="MaDH" />
           <ScalarProperty Name="MaSP" ColumnName="MaSP" />
@@ -110,7 +110,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TTDHs">
-      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel1.TTDH">
+      <EntityTypeMapping TypeName="QLCuaHangThucPhamModel.TTDH">
         <MappingFragment StoreEntitySet="TTDH">
           <ScalarProperty Name="MaDH" ColumnName="MaDH" />
           <ScalarProperty Name="MaPTTT" ColumnName="MaPTTT" />

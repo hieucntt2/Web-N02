@@ -20,7 +20,7 @@ namespace WebQLCuaHangThucPham.Models
             this.SanPhams = new HashSet<SanPham>();
         }
     
-        public string MaLoai { get; set; }
+        public int MaLoai { get; set; }
         public string TenLoai { get; set; }
         public Nullable<System.DateTime> Time_Create { get; set; }
         public Nullable<System.DateTime> Time_Update { get; set; }

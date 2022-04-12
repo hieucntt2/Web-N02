@@ -32,7 +32,7 @@ namespace WebQLCuaHangThucPham.Controllers
         /// <param name="MaLoai"></param>
         /// <param name="value">Là các mốc giá: Tất cả,..</param>
         /// <returns></returns>
-        public ActionResult ChiTietLoaiSP(int? page, string MaLoai, int value = 0)
+        public ActionResult ChiTietLoaiSP(int? page, int MaLoai, int value = 0)
         {
             int pageSize = 12;
             int  pagenumber = (page ?? 1);
@@ -41,7 +41,7 @@ namespace WebQLCuaHangThucPham.Controllers
             List<int> maxPrice = new List<int>() { int.MaxValue, 100000, 500000, int.MaxValue };
             
             //Trường hợp lấy ra tất cả sp
-            if(MaLoai == "all")
+            if(MaLoai == 0)
             {
                lstSP = db.SanPhams.Where(x => x.isActive == 0 && x.isDelete == 0).OrderBy(n => n.TenSP).ToList();
             }
@@ -67,7 +67,7 @@ namespace WebQLCuaHangThucPham.Controllers
             ViewBag.lstSanPham = db.SanPhams.ToList();
             return View(lstSP.ToPagedList(pagenumber,pageSize));
         }
-        public ActionResult ChiTietSanPham(string MaSP)
+        public ActionResult ChiTietSanPham(int MaSP)
         {
             
             SanPham sp = db.SanPhams.Single(n => n.MaSP == MaSP);
@@ -83,7 +83,7 @@ namespace WebQLCuaHangThucPham.Controllers
             return View(sp);
         }
         //sản phẩm tương tự 
-        public ActionResult SanPhamTuongTu(string MaLoaiSP)
+        public ActionResult SanPhamTuongTu(int MaLoaiSP)
         {
             List<SanPham> lstSP = db.SanPhams.Where(x => x.isActive == 0 && x.isDelete == 0 && x.MaLoai == MaLoaiSP ).OrderBy(n => n.TenSP).ToList();
             return PartialView(lstSP);

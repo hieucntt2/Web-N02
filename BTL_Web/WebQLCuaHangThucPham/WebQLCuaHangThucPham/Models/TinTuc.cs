@@ -14,7 +14,7 @@ namespace WebQLCuaHangThucPham.Models
     
     public partial class TinTuc
     {
-        public string MaTT { get; set; }
+        public int MaTT { get; set; }
         public string MoTa { get; set; }
         public string Anh { get; set; }
         public string ND { get; set; }

@@ -22,7 +22,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         }
 
         // GET: Admins/SanPhams/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         }
 
         // GET: Admins/SanPhams/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -100,7 +100,7 @@ namespace WebQLCuaHangThucPham.Areas.Admins.Controllers
         }
 
         // GET: Admins/SanPhams/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {

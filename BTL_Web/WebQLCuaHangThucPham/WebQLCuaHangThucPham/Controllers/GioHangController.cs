@@ -21,7 +21,7 @@ namespace WebQLCuaHangThucPham.Controllers
             return lstGioHang;
         }
 
-        public ActionResult ThemGioHang(string MaSP, string strUrl, int Sl)
+        public ActionResult ThemGioHang(int MaSP, string strUrl, int Sl)
         {
             SanPham sanpham = db.SanPhams.SingleOrDefault(n => n.MaSP == MaSP);
             if (sanpham == null)
@@ -103,7 +103,7 @@ namespace WebQLCuaHangThucPham.Controllers
             return PartialView();
         }
 
-        public ActionResult XoaGioHang(string MaSP)
+        public ActionResult XoaGioHang(int MaSP)
         {
             SanPham sanpham = db.SanPhams.SingleOrDefault(n => n.MaSP == MaSP);
             if (sanpham == null)
@@ -125,7 +125,7 @@ namespace WebQLCuaHangThucPham.Controllers
             return RedirectToAction("GioHang", "GioHang");
         }
 
-        public ActionResult CapNhatGioHang(List<string> listMaSP, List<int> listSL)
+        public ActionResult CapNhatGioHang(List<int> listMaSP, List<int> listSL)
         {
             List<GioHang> lstGioHang = LayGioHang();
             for (int i = 0; i < listMaSP.Count; i++)

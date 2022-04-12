@@ -14,8 +14,8 @@ namespace WebQLCuaHangThucPham.Models
     
     public partial class GiaSP
     {
-        public string MaGia { get; set; }
-        public string MaSP { get; set; }
+        public int MaGia { get; set; }
+        public Nullable<int> MaSP { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public Nullable<System.DateTime> Time_Begin { get; set; }
         public Nullable<System.DateTime> Time_End { get; set; }

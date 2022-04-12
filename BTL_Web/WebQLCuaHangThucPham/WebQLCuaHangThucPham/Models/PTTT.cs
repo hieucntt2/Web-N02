@@ -20,7 +20,7 @@ namespace WebQLCuaHangThucPham.Models
             this.TTDHs = new HashSet<TTDH>();
         }
     
-        public string MaPTTT { get; set; }
+        public int MaPTTT { get; set; }
         public string TenPT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

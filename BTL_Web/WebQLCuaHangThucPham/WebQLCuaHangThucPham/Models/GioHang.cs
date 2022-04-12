@@ -5,7 +5,7 @@ namespace WebQLCuaHangThucPham.Models
     public class GioHang
     {
         private QLCuaHangThucPhamEntities1 db = new QLCuaHangThucPhamEntities1();
-        public string MaSP { get; set; }
+        public int MaSP { get; set; }
         public string TenSP { get; set; }
         public double Gia { get; set; }
         public string AnhSP { get; set; }
@@ -16,7 +16,7 @@ namespace WebQLCuaHangThucPham.Models
             get { return Gia * SL; }
         }
 
-        public GioHang(string MaSP, int SL)
+        public GioHang(int MaSP, int SL)
         {
             this.MaSP = MaSP;
 

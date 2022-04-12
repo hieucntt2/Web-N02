@@ -22,10 +22,10 @@ namespace WebQLCuaHangThucPham.Models
             this.CTDHs = new HashSet<CTDH>();
         }
     
-        public string MaSP { get; set; }
+        public int MaSP { get; set; }
         public string TenSP { get; set; }
         public string GTSP { get; set; }
-        public string MaLoai { get; set; }
+        public Nullable<int> MaLoai { get; set; }
         public Nullable<int> SL { get; set; }
         public Nullable<System.DateTime> Time_Create { get; set; }
         public Nullable<System.DateTime> Time_Update { get; set; }
@@ -40,7 +40,6 @@ namespace WebQLCuaHangThucPham.Models
         public virtual LoaiSP LoaiSP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDH> CTDHs { get; set; }
-
         public double Gia { get; set; }
     }
 }

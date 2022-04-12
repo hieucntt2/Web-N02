@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QLCuaHangThucPhamModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="QLCuaHangThucPhamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AnhSP">
     <Key>
       <PropertyRef Name="MaAnh" />
     </Key>
-    <Property Name="MaAnh" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="MaSP" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaAnh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaSP" Type="int" Nullable="false" />
     <Property Name="TenAnh" Type="nvarchar" MaxLength="50" />
     <Property Name="URL" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.CTDH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'QLCuaHangThucPham.dbo.CTDH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="CTDH">
     <Key>
       <PropertyRef Name="MaDH" />
       <PropertyRef Name="MaSP" />
     </Key>
-    <Property Name="MaDH" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="MaSP" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaDH" Type="int" Nullable="false" />
+    <Property Name="MaSP" Type="int" Nullable="false" />
     <Property Name="SoLuong" Type="int" />
   </EntityType>
   <EntityType Name="DonHang">
     <Key>
       <PropertyRef Name="MaDH" />
     </Key>
-    <Property Name="MaDH" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Time_Create" Type="datetime" />
     <Property Name="Money" Type="money" />
     <Property Name="MaKH" Type="int" Nullable="false" />
@@ -33,8 +33,8 @@ warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.CTDH' does not have a pr
     <Key>
       <PropertyRef Name="MaGia" />
     </Key>
-    <Property Name="MaGia" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="MaSP" Type="nvarchar" MaxLength="15" />
+    <Property Name="MaGia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaSP" Type="int" />
     <Property Name="Gia" Type="money" />
     <Property Name="Time_Begin" Type="datetime" />
     <Property Name="Time_End" Type="datetime" />
@@ -63,7 +63,7 @@ warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.CTDH' does not have a pr
     <Key>
       <PropertyRef Name="MaLoai" />
     </Key>
-    <Property Name="MaLoai" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
     <Property Name="Time_Create" Type="datetime" />
     <Property Name="Time_Update" Type="datetime" />
@@ -75,17 +75,17 @@ warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.CTDH' does not have a pr
     <Key>
       <PropertyRef Name="MaPTTT" />
     </Key>
-    <Property Name="MaPTTT" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaPTTT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenPT" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="SanPham">
     <Key>
       <PropertyRef Name="MaSP" />
     </Key>
-    <Property Name="MaSP" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenSP" Type="nvarchar" MaxLength="50" />
     <Property Name="GTSP" Type="nvarchar" MaxLength="50" />
-    <Property Name="MaLoai" Type="nvarchar" MaxLength="15" />
+    <Property Name="MaLoai" Type="int" />
     <Property Name="SL" Type="int" />
     <Property Name="Time_Create" Type="datetime" />
     <Property Name="Time_Update" Type="datetime" />
@@ -97,20 +97,20 @@ warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.CTDH' does not have a pr
     <Key>
       <PropertyRef Name="MaTT" />
     </Key>
-    <Property Name="MaTT" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaTT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
     <Property Name="Anh" Type="nvarchar" MaxLength="50" />
     <Property Name="ND" Type="nvarchar(max)" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.TTDH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'QLCuaHangThucPham.dbo.TTDH' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="TTDH">
     <Key>
       <PropertyRef Name="MaDH" />
       <PropertyRef Name="MaPTTT" />
     </Key>
-    <Property Name="MaDH" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="MaPTTT" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="MaDH" Type="int" Nullable="false" />
+    <Property Name="MaPTTT" Type="int" Nullable="false" />
     <Property Name="Tong" Type="money" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
   </EntityType>
@@ -210,7 +210,7 @@ warning 6002: The table/view 'QLCuaHangThucPham_N02.dbo.TTDH' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QLCuaHangThucPhamModel1StoreContainer">
+  <EntityContainer Name="QLCuaHangThucPhamModelStoreContainer">
     <EntitySet Name="AnhSP" EntityType="Self.AnhSP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GiaSP" EntityType="Self.GiaSP" Schema="dbo" store:Type="Tables" />

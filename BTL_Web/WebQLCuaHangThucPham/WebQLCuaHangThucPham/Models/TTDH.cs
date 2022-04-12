@@ -14,8 +14,8 @@ namespace WebQLCuaHangThucPham.Models
     
     public partial class TTDH
     {
-        public string MaDH { get; set; }
-        public string MaPTTT { get; set; }
+        public int MaDH { get; set; }
+        public int MaPTTT { get; set; }
         public Nullable<decimal> Tong { get; set; }
         public string GhiChu { get; set; }
     
